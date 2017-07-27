@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import './Annotations.css'
 import CropHints from './CropHints'
+import Faces from './Faces'
 import Labels from './Labels'
 import Tabs from './Tabs'
 import Web from './Web'
@@ -93,6 +94,7 @@ export default class Annotations extends Component {
     const response = data.responses[0]
     const {
       cropHintsAnnotation,
+      faceAnnotations,
       labelAnnotations,
       webDetection
     } = response
@@ -113,6 +115,12 @@ export default class Annotations extends Component {
       tabs.push({
         content: <CropHints image={image} {...cropHintsAnnotation} />,
         name: 'Crop Hints'
+      })
+    }
+    if (faceAnnotations) {
+      tabs.push({
+        content: <Faces faces={faceAnnotations} image={image} />,
+        name: 'Faces'
       })
     }
     return (
