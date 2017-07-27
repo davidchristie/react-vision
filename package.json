@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.10",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "xmlhttprequest": "^1.8.0"
   },
   "name": "react-vision",
   "private": true,

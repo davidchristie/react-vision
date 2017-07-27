@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 
+import Annotations from '../Annotations'
 import './Snapshot.css'
 
 export default class Snapshot extends Component {
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.state = {
+      image: null
+    }
   }
 
   componentDidMount () {
@@ -29,9 +33,13 @@ export default class Snapshot extends Component {
     canvas.height = video.videoHeight
     canvas.getContext('2d')
       .drawImage(video, 0, 0, canvas.width, canvas.height)
+    this.setState({
+      image: canvas.toDataURL()
+    })
   }
 
   render () {
+    const { image } = this.state
     return (
       <div className='Snapshot'>
         <video ref='video' autoPlay />
@@ -39,6 +47,11 @@ export default class Snapshot extends Component {
           Take snapshot
         </button>
         <canvas ref='canvas' />
+        {
+          image
+            ? <Annotations image={image} />
+            : null
+        }
       </div>
     )
   }
