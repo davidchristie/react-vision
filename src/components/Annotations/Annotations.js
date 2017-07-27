@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import './Annotations.css'
 import CropHints from './CropHints'
 import Labels from './Labels'
+import Web from './Web'
 
 const { fetch } = window
 
@@ -91,7 +92,8 @@ export default class Annotations extends Component {
     const response = data.responses[0]
     const {
       cropHintsAnnotation,
-      labelAnnotations
+      labelAnnotations,
+      webDetection
     } = response
     return (
       <div className='Annotations'>
@@ -99,6 +101,11 @@ export default class Annotations extends Component {
         {
           labelAnnotations
             ? <Labels labels={labelAnnotations} />
+            : null
+        }
+        {
+          webDetection
+            ? <Web web={webDetection} />
             : null
         }
         {
