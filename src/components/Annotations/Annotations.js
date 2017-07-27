@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import './Annotations.css'
 import CropHints from './CropHints'
+import Labels from './Labels'
 
 const { fetch } = window
 
@@ -39,6 +40,9 @@ export default class Annotations extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    this.setState({
+      data: null
+    })
     this.fetchAnnotations(nextProps.image)
   }
 
@@ -86,11 +90,17 @@ export default class Annotations extends Component {
     }
     const response = data.responses[0]
     const {
-      cropHintsAnnotation
+      cropHintsAnnotation,
+      labelAnnotations
     } = response
     return (
       <div className='Annotations'>
         <h2>Annotations</h2>
+        {
+          labelAnnotations
+            ? <Labels labels={labelAnnotations} />
+            : null
+        }
         {
           cropHintsAnnotation
             ? <CropHints image={image} {...cropHintsAnnotation} />
