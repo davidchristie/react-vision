@@ -24,6 +24,11 @@ export default class App extends Component {
     return (
       <div className='App'>
         <h1>React Vision</h1>
+        <div className='links'>
+          <a href='https://github.com/davidchristie/react-vision'>
+            GitHub
+          </a>
+        </div>
         <div className='container'>
           <div className='column'>
             <Snapshot onSnapshot={this.handleSnapshot} />

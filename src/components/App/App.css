@@ -1,3 +1,7 @@
+.App > h1 {
+  text-align: center;
+}
+
 .App > .container {
   display: flex;
 }
@@ -7,7 +11,9 @@
   width: 50%;
 }
 
-.App > h1 {
+.App > .links {
+  font-size: 1.2em;
+  margin-bottom: 20px;
   text-align: center;
 }
 
