@@ -1,0 +1,36 @@
+.Tabs {
+  margin: 0px;
+}
+
+.Tabs > .content {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 6px 12px;
+}
+
+.Tabs > .tabs {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.Tabs > .tabs > .tab {
+  background-color: inherit;
+  border: thin solid #ccc;
+  cursor: pointer;
+  float: left;
+  font-size: 1.2em;
+  outline: none;
+  padding: 14px 16px;
+  transition: 300ms;
+}
+
+.Tabs > .tabs > .tab:hover {
+  background-color: #ddd;
+  color: white;
+}
+
+.Tabs > .tabs > .tab.active {
+  background-color: #ccc;
+}

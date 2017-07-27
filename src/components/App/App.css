@@ -1,9 +1,27 @@
-.App h1 {
+.App > .container {
+  display: flex;
+}
+
+.App > .container > .column {
+  flex: 1 100%;
+  width: 50%;
+}
+
+.App > h1 {
   text-align: center;
 }
 
 .App .Snapshot {
   margin-left: auto;
-  margin-right: auto; 
-  max-width: 500px;
+  margin-right: auto;
+}
+
+@media (max-width: 500px) {
+  .App > .container {
+    display: block;
+  }
+
+  .App > .container > .column {
+    width: 100%;
+  }
 }

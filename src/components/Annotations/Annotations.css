@@ -1,3 +1,8 @@
 .Annotations {
-  padding: 10px;
+  height: 100%;
+}
+
+.Annotations canvas {
+  height: auto;
+  width: 100%;
 }

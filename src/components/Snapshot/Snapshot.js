@@ -1,9 +1,13 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import Annotations from '../Annotations'
 import './Snapshot.css'
 
 export default class Snapshot extends Component {
+  static propTypes = {
+    onSnapshot: PropTypes.func
+  }
+
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
@@ -28,18 +32,22 @@ export default class Snapshot extends Component {
   }
 
   handleClick () {
+    const { onSnapshot } = this.props
     const { canvas, video } = this.refs
     canvas.width = video.videoWidth
     canvas.height = video.videoHeight
     canvas.getContext('2d')
       .drawImage(video, 0, 0, canvas.width, canvas.height)
+    const image = canvas.toDataURL()
     this.setState({
-      image: canvas.toDataURL()
+      image
     })
+    if (onSnapshot) {
+      onSnapshot(image)
+    }
   }
 
   render () {
-    const { image } = this.state
     return (
       <div className='Snapshot'>
         <video ref='video' autoPlay />
@@ -47,11 +55,6 @@ export default class Snapshot extends Component {
           Take snapshot
         </button>
         <canvas ref='canvas' />
-        {
-          image
-            ? <Annotations image={image} />
-            : null
-        }
       </div>
     )
   }

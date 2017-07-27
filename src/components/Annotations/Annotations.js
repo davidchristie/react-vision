@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import './Annotations.css'
 import CropHints from './CropHints'
 import Labels from './Labels'
+import Tabs from './Tabs'
 import Web from './Web'
 
 const { fetch } = window
@@ -95,24 +96,28 @@ export default class Annotations extends Component {
       labelAnnotations,
       webDetection
     } = response
+    const tabs = []
+    if (labelAnnotations) {
+      tabs.push({
+        content: <Labels labels={labelAnnotations} />,
+        name: 'Labels'
+      })
+    }
+    if (webDetection) {
+      tabs.push({
+        content: <Web web={webDetection} />,
+        name: 'Web'
+      })
+    }
+    if (cropHintsAnnotation) {
+      tabs.push({
+        content: <CropHints image={image} {...cropHintsAnnotation} />,
+        name: 'Crop Hints'
+      })
+    }
     return (
       <div className='Annotations'>
-        <h2>Annotations</h2>
-        {
-          labelAnnotations
-            ? <Labels labels={labelAnnotations} />
-            : null
-        }
-        {
-          webDetection
-            ? <Web web={webDetection} />
-            : null
-        }
-        {
-          cropHintsAnnotation
-            ? <CropHints image={image} {...cropHintsAnnotation} />
-            : null
-        }
+        <Tabs tabs={tabs} />
       </div>
     )
   }
