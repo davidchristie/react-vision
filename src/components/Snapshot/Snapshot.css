@@ -1,0 +1,19 @@
+.Snapshot {
+  border: thin solid;
+}
+
+.Snapshot button {
+  font-size: 1.4em;
+  padding: 10px;
+  width: 100%;
+}
+
+.Snapshot canvas {
+  height: auto;
+  width: 100%;
+}
+
+.Snapshot video {
+  height: auto;
+  width: 100%;
+}

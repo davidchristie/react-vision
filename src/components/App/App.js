@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import Snapshot from '../Snapshot'
 import './App.css'
 
 export default class App extends Component {
@@ -7,6 +8,7 @@ export default class App extends Component {
     return (
       <div className='App'>
         <h1>React Vision</h1>
+        <Snapshot />
       </div>
     )
   }

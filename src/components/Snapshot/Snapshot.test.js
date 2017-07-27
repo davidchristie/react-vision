@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './App'
+import Snapshot from './Snapshot'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  render(<App />, div)
+  render(<Snapshot />, div)
 })
