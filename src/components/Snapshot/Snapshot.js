@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
+import SelectCamera from './SelectCamera'
 import './Snapshot.css'
 
 export default class Snapshot extends Component {
@@ -10,16 +11,27 @@ export default class Snapshot extends Component {
 
   constructor (props) {
     super(props)
+    this.handleCameraChange = this.handleCameraChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.state = {
+      camera: null,
       image: null
     }
   }
 
-  componentDidMount () {
+  handleCameraChange (camera) {
+    this.setState({
+      camera
+    })
     const constraints = {
       audio: false,
-      video: true
+      video: {
+        deviceId: camera
+          ? {
+            exact: camera
+          }
+          : undefined
+      }
     }
     navigator.mediaDevices.getUserMedia(constraints)
       .then(stream => {
@@ -48,8 +60,13 @@ export default class Snapshot extends Component {
   }
 
   render () {
+    const { camera } = this.state
     return (
       <div className='Snapshot'>
+        <SelectCamera
+          onChange={this.handleCameraChange}
+          value={camera}
+        />
         <video ref='video' autoPlay />
         <button onClick={this.handleClick}>
           Take snapshot
