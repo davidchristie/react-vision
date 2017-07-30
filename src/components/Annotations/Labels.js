@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import './Labels.css'
+import Score from './Score'
 
 export default class Labels extends Component {
   static propTypes = {
@@ -23,14 +24,8 @@ export default class Labels extends Component {
           labels.map(label => {
             return (
               <div key={label.mid}>
-                <p>
-                  <strong>Description: </strong>
-                  {label.description}
-                </p>
-                <p>
-                  <strong>Score: </strong>
-                  {label.score}
-                </p>
+                {label.description}
+                <Score value={label.score} />
               </div>
             )
           })

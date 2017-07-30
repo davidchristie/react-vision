@@ -1,0 +1,10 @@
+.Score {
+  background: #ddd;
+  height: 20px;
+}
+
+.Score > div {
+  background: #4caf50;
+  height: 100%;
+}
+

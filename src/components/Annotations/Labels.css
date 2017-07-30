@@ -1,5 +1,7 @@
 .Labels > div {
   border: thin solid;
+  font-weight: bold;
   margin: 10px;
   padding: 10px;
+  text-transform: capitalize;
 }
