@@ -5,6 +5,7 @@ import './Annotations.css'
 import CropHints from './CropHints'
 import Faces from './Faces'
 import Labels from './Labels'
+import SafeSearch from './SafeSearch'
 import Tabs from './Tabs'
 import Web from './Web'
 
@@ -80,14 +81,14 @@ export default class Annotations extends Component {
     if (!data) {
       return (
         <div className='Annotations'>
-          <p>Loading...</p>
+          <h2>Loading...</h2>
         </div>
       )
     }
     if (!data.responses) {
       return (
         <div className='Annotations'>
-          <p>Network error</p>
+          <h2>Network error</h2>
         </div>
       )
     }
@@ -96,21 +97,10 @@ export default class Annotations extends Component {
       cropHintsAnnotation,
       faceAnnotations,
       labelAnnotations,
+      safeSearchAnnotation,
       webDetection
     } = response
     const tabs = []
-    if (labelAnnotations) {
-      tabs.push({
-        content: <Labels labels={labelAnnotations} />,
-        name: 'Labels'
-      })
-    }
-    if (webDetection) {
-      tabs.push({
-        content: <Web web={webDetection} />,
-        name: 'Web'
-      })
-    }
     if (cropHintsAnnotation) {
       tabs.push({
         content: <CropHints image={image} {...cropHintsAnnotation} />,
@@ -121,6 +111,24 @@ export default class Annotations extends Component {
       tabs.push({
         content: <Faces faces={faceAnnotations} image={image} />,
         name: 'Faces'
+      })
+    }
+    if (labelAnnotations) {
+      tabs.push({
+        content: <Labels labels={labelAnnotations} />,
+        name: 'Labels'
+      })
+    }
+    if (safeSearchAnnotation) {
+      tabs.push({
+        content: <SafeSearch safeSearch={safeSearchAnnotation} />,
+        name: 'Safe Search'
+      })
+    }
+    if (webDetection) {
+      tabs.push({
+        content: <Web web={webDetection} />,
+        name: 'Web'
       })
     }
     return (
