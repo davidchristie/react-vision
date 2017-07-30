@@ -15,14 +15,20 @@ export default class Snapshot extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.state = {
       camera: null,
-      image: null
+      image: null,
+      stream: null
     }
   }
 
   handleCameraChange (camera) {
-    this.setState({
-      camera
-    })
+    const { video } = this.refs
+    const { stream } = this.state
+    if (stream) {
+      const tracks = stream.getTracks()
+      tracks.forEach(track => {
+        track.stop()
+      })
+    }
     const constraints = {
       audio: false,
       video: {
@@ -35,12 +41,17 @@ export default class Snapshot extends Component {
     }
     navigator.mediaDevices.getUserMedia(constraints)
       .then(stream => {
-        const { video } = this.refs
         video.srcObject = stream
+        this.setState({
+          stream
+        })
       })
       .catch(error => {
         console.log('navigator.getUserMedia error: ', error)
       })
+    this.setState({
+      camera
+    })
   }
 
   handleClick () {

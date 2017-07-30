@@ -41,8 +41,9 @@ export default class SelectCamera extends Component {
   }
 
   handleClick (event) {
-    const { onChange } = this.props
-    if (onChange) {
+    const { onChange, value } = this.props
+    const nextValue = event.target.value
+    if (onChange && nextValue !== value) {
       onChange(event.target.value)
     }
   }
@@ -60,7 +61,7 @@ export default class SelectCamera extends Component {
                   <input
                     checked={camera.deviceId === value}
                     name='camera'
-                    onChange={this.handleChange}
+                    onClick={this.handleClick}
                     type='radio'
                     value={camera.deviceId}
                   />
