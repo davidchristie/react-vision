@@ -8,7 +8,7 @@ export default class Web extends Component {
     web: PropTypes.shape({
       visuallySimilarImages: PropTypes.arrayOf(
         PropTypes.object
-      ).isRequired
+      )
     }).isRequired
   }
 
@@ -16,7 +16,11 @@ export default class Web extends Component {
     const { web: { visuallySimilarImages } } = this.props
     return (
       <div className='Web'>
-        <VisuallySimilar images={visuallySimilarImages} />
+        {
+          visuallySimilarImages
+            ? <VisuallySimilar images={visuallySimilarImages} />
+            : null
+        }
       </div>
     )
   }

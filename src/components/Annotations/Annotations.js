@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import './Annotations.css'
 import CropHints from './CropHints'
 import Faces from './Faces'
+import FullText from './FullText'
 import Labels from './Labels'
 import SafeSearch from './SafeSearch'
 import Tabs from './Tabs'
@@ -93,9 +94,11 @@ export default class Annotations extends Component {
       )
     }
     const response = data.responses[0]
+    console.log(response)
     const {
       cropHintsAnnotation,
       faceAnnotations,
+      fullTextAnnotation,
       labelAnnotations,
       safeSearchAnnotation,
       webDetection
@@ -123,6 +126,12 @@ export default class Annotations extends Component {
       tabs.push({
         content: <SafeSearch safeSearch={safeSearchAnnotation} />,
         name: 'Safe Search'
+      })
+    }
+    if (fullTextAnnotation) {
+      tabs.push({
+        content: <FullText fullText={fullTextAnnotation} />,
+        name: 'Text'
       })
     }
     if (webDetection) {
