@@ -23,6 +23,7 @@ export default class VisuallySimilar extends Component {
               <a
                 href={image.url}
                 key={image.url}
+                rel='noopener noreferrer'
                 target='_blank'
               >
                 <img alt='' src={image.url} />

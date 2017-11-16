@@ -5,6 +5,7 @@ import './Annotations.css'
 import CropHints from './CropHints'
 import Faces from './Faces'
 import FullText from './FullText'
+import ImageProperties from './ImageProperties'
 import Labels from './Labels'
 import SafeSearch from './SafeSearch'
 import Tabs from './Tabs'
@@ -100,6 +101,7 @@ export default class Annotations extends Component {
       faceAnnotations,
       fullTextAnnotation,
       labelAnnotations,
+      imagePropertiesAnnotation,
       safeSearchAnnotation,
       webDetection
     } = response
@@ -120,6 +122,12 @@ export default class Annotations extends Component {
       tabs.push({
         content: <Labels labels={labelAnnotations} />,
         name: 'Labels'
+      })
+    }
+    if (imagePropertiesAnnotation) {
+      tabs.push({
+        content: <ImageProperties imagePropertiesAnnotation={imagePropertiesAnnotation} />,
+        name: 'Properties'
       })
     }
     if (safeSearchAnnotation) {

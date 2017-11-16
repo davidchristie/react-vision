@@ -5,6 +5,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.2",
     "react-scripts": "1.0.10",
     "standard": "^10.0.2",
     "xmlhttprequest": "^1.8.0"
