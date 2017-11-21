@@ -1,8 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<video
-  autoPlay={true}
-  className="VideoStream"
-/>
+exports[`mounts with stream 1`] = `
+<_class
+  stream={Object {}}
+>
+  <video
+    autoPlay={true}
+    className="VideoStream"
+  />
+</_class>
+`;
+
+exports[`mounts without stream 1`] = `
+<_class>
+  <video
+    autoPlay={true}
+    className="VideoStream"
+  />
+</_class>
 `;

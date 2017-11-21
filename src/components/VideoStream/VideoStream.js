@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 export default class extends Component {
   static propTypes = {
-    stream: PropTypes.instanceOf(window.MediaStream)
+    stream: PropTypes.object
   }
 
   componentWillReceiveProps (nextProps) {
