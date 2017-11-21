@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import getDevices from '../../devices/getDevices'
 import './SelectCamera.css'
 
 export default class SelectCamera extends Component {
@@ -20,7 +19,7 @@ export default class SelectCamera extends Component {
 
   componentWillMount () {
     const { onChange } = this.props
-    getDevices()
+    navigator.mediaDevices.enumerateDevices()
       .then(devices => {
         const cameras = devices.filter(device => {
           return device.kind === 'videoinput'

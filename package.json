@@ -1,14 +1,21 @@
 {
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
-    "react-scripts": "1.0.10",
-    "standard": "^10.0.2",
-    "xmlhttprequest": "^1.8.0"
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
+    "react-scripts": "1.0.17",
+    "standard": "^10.0.3"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "name": "react-vision",
   "private": true,

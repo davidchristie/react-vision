@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import SelectCamera from './SelectCamera'
 import './Snapshot.css'
+import VideoStream from '../VideoStream'
 
 export default class Snapshot extends Component {
   static propTypes = {
@@ -21,7 +22,6 @@ export default class Snapshot extends Component {
   }
 
   handleCameraChange (camera) {
-    const { video } = this.refs
     const { stream } = this.state
     if (stream) {
       const tracks = stream.getTracks()
@@ -41,7 +41,6 @@ export default class Snapshot extends Component {
     }
     navigator.mediaDevices.getUserMedia(constraints)
       .then(stream => {
-        video.srcObject = stream
         this.setState({
           stream
         })
@@ -56,12 +55,8 @@ export default class Snapshot extends Component {
 
   handleClick () {
     const { onSnapshot } = this.props
-    const { canvas, video } = this.refs
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
-    canvas.getContext('2d')
-      .drawImage(video, 0, 0, canvas.width, canvas.height)
-    const image = canvas.toDataURL()
+    const { video } = this.refs
+    const image = video.getImage()
     this.setState({
       image
     })
@@ -71,18 +66,22 @@ export default class Snapshot extends Component {
   }
 
   render () {
-    const { camera } = this.state
+    const { camera, image, stream } = this.state
     return (
       <div className='Snapshot'>
         <SelectCamera
           onChange={this.handleCameraChange}
           value={camera}
         />
-        <video ref='video' autoPlay />
+        <VideoStream ref='video' stream={stream} />
         <button onClick={this.handleClick}>
           Take snapshot
         </button>
-        <canvas ref='canvas' />
+        {
+          image
+            ? <img alt='snapshot' src={image} />
+            : null
+        }
       </div>
     )
   }

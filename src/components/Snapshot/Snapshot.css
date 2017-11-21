@@ -9,12 +9,10 @@
   width: 100%;
 }
 
-.Snapshot canvas {
-  height: auto;
+.Snapshot .VideoStream {
   width: 100%;
 }
 
-.Snapshot video {
-  height: auto;
+.Snapshot img {
   width: 100%;
 }

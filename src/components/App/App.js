@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import getGoogleVisionAnnotations from '../../services/getGoogleVisionAnnotations'
 import Annotations from '../Annotations'
 import Snapshot from '../Snapshot'
 import './App.css'
@@ -17,10 +18,16 @@ export default class App extends Component {
     this.setState({
       image
     })
+    getGoogleVisionAnnotations(image)
+      .then(data => {
+        this.setState({
+          data
+        })
+      })
   }
 
   render () {
-    const { image } = this.state
+    const { data, image } = this.state
     return (
       <div className='App'>
         <h1>React Vision</h1>
@@ -36,7 +43,7 @@ export default class App extends Component {
           <div className='column'>
             {
               image
-                ? <Annotations image={image} />
+                ? <Annotations data={data} image={image} />
                 : null
             }
           </div>
